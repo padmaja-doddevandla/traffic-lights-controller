@@ -3,22 +3,22 @@ package com.example.traffic.domain;
 
 import java.time.Instant;
 
-public class TrafficLight {
+public class TrafficLights {
 
-    private LightColor color;
+    private LightColors color;
     private Instant lastChanged;
 
-    public TrafficLight() {
-        this.color = LightColor.RED;
+    public TrafficLights() {
+        this.color = LightColors.RED;
         this.lastChanged = Instant.now();
     }
 
-    public synchronized void change(LightColor newColor) {
+    public synchronized void change(LightColors newColor) {
         this.color = newColor;
         this.lastChanged = Instant.now();
     }
 
-    public LightColor getColor() {
+    public LightColors getColor() {
         return color;
     }
 

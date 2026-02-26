@@ -1,6 +1,6 @@
 package com.example.traffic.domain;
 
 
-public enum LightColor {
+public enum LightColors {
     RED, YELLOW, GREEN
 }

@@ -19,16 +19,6 @@ public class TrafficController {
 	
 	  public TrafficController(TrafficService service) { this.service = service; }
 	
-
-	  
-		/*
-		 * @PostMapping("/change") public String changeLight(@RequestParam Direction
-		 * direction,
-		 * 
-		 * @RequestParam LightColor color) {
-		 * 
-		 * service.changeLight(direction, color); return "Light updated successfully"; }
-		 */
     
 	  @PostMapping("/change")
 	    public String changeLight(@RequestBody LightChangeRequest request) {

@@ -1,10 +1,10 @@
 package com.example.traffic.service.impl;
 
 
-import com.example.traffic.domain.Direction;
+import com.example.traffic.domain.Directions;
 import com.example.traffic.domain.HistoryEntry;
 
-import com.example.traffic.domain.LightColor;
+import com.example.traffic.domain.LightColors;
 import com.example.traffic.service.TrafficService;
 import org.springframework.stereotype.Service;
 
@@ -17,25 +17,25 @@ import java.util.*;
 @Service
 public class TrafficServiceImpl implements TrafficService {
 
-    private final Map<Direction, LightColor> currentState = new ConcurrentHashMap<>();
+    private final Map<Directions, LightColors> currentState = new ConcurrentHashMap<>();
     private final List<HistoryEntry> history = new CopyOnWriteArrayList<>();
     private volatile boolean paused = false;
 
     public TrafficServiceImpl() {
-        for (Direction dir : Direction.values()) {
-            currentState.put(dir, LightColor.RED);
+        for (Directions dir : Directions.values()) {
+            currentState.put(dir, LightColors.RED);
         }
     }
 
     @Override
-    public synchronized void changeLight(Direction direction, LightColor color) {
+    public synchronized void changeLight(Directions direction, LightColors color) {
 
         if (paused) {
             throw new IllegalStateException("System is paused");
         }
 
         // Conflict validation
-        if (color == LightColor.GREEN) {
+        if (color == LightColors.GREEN) {
             validateNoConflict(direction);
         }
 
@@ -43,10 +43,10 @@ public class TrafficServiceImpl implements TrafficService {
         history.add(new HistoryEntry(direction + " changed to " + color));
     }
 
-    private void validateNoConflict(Direction direction) {
-        for (Map.Entry<Direction, LightColor> entry : currentState.entrySet()) {
+    private void validateNoConflict(Directions direction) {
+        for (Map.Entry<Directions, LightColors> entry : currentState.entrySet()) {
             if (!entry.getKey().equals(direction)
-                    && entry.getValue() == LightColor.GREEN) {
+                    && entry.getValue() == LightColors.GREEN) {
                 throw new IllegalStateException("Conflict detected: "
                         + entry.getKey() + " is already GREEN");
             }
@@ -66,7 +66,7 @@ public class TrafficServiceImpl implements TrafficService {
     }
 
     @Override
-    public Map<Direction, LightColor> getCurrentState() {
+    public Map<Directions, LightColors> getCurrentState() {
         return currentState;
     }
 

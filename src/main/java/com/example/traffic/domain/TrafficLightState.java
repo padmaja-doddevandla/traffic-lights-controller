@@ -11,7 +11,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class TrafficLightState {
 
-    private Direction direction;
-    private LightColor color;
+    private Directions direction;
+    private LightColors color;
     private long timestamp;
 }
