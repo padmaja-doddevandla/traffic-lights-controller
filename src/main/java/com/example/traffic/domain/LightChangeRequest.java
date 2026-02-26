@@ -4,12 +4,22 @@ package com.example.traffic.domain;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+/**
+ * @LightChangeRequest class
+ */
+
 @Data
 public class LightChangeRequest {
 
+	 /**
+     * The direction of the traffic light to be changed.
+     */
     @NotNull
     private Directions direction;
 
+    /**
+     * The new color to set for the specified traffic light.
+     */
     @NotNull
     private LightColors color;
 
