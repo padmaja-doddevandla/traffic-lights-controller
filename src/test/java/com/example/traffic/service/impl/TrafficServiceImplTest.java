@@ -1,20 +1,26 @@
 package com.example.traffic.service.impl;
 
+import com.example.traffic.controller.TrafficController;
 import com.example.traffic.domain.Directions;
 import com.example.traffic.domain.HistoryEntry;
 import com.example.traffic.domain.LightColors;
-
+import com.example.traffic.exception.IntersectionPausedException;
+import com.example.traffic.exception.TrafficConflictException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 
 import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TrafficServiceImplTest {
+@WebMvcTest(TrafficServiceImplTest.class)
+public class TrafficServiceImplTest {
 
+	@Mock
     private TrafficServiceImpl trafficService;
 
     @BeforeEach
@@ -43,8 +49,8 @@ class TrafficServiceImplTest {
     void shouldThrowExceptionWhenSystemIsPaused() {
         trafficService.pause();
 
-        IllegalStateException exception = assertThrows(
-                IllegalStateException.class,
+        IntersectionPausedException exception = assertThrows(
+        		IntersectionPausedException.class,
                 () -> trafficService.changeLight(Directions.NORTH, LightColors.GREEN)
         );
 
@@ -55,8 +61,8 @@ class TrafficServiceImplTest {
     void shouldThrowConflictExceptionWhenAnotherDirectionIsGreen() {
         trafficService.changeLight(Directions.NORTH, LightColors.GREEN);
 
-        IllegalStateException exception = assertThrows(
-                IllegalStateException.class,
+        TrafficConflictException exception = assertThrows(
+        		TrafficConflictException.class,
                 () -> trafficService.changeLight(Directions.SOUTH, LightColors.GREEN)
         );
 

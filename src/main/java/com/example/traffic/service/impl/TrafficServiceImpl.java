@@ -5,6 +5,8 @@ import com.example.traffic.domain.Directions;
 import com.example.traffic.domain.HistoryEntry;
 
 import com.example.traffic.domain.LightColors;
+import com.example.traffic.exception.IntersectionPausedException;
+import com.example.traffic.exception.TrafficConflictException;
 import com.example.traffic.service.TrafficService;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +33,7 @@ public class TrafficServiceImpl implements TrafficService {
     public synchronized void changeLight(Directions direction, LightColors color) {
 
         if (paused) {
-            throw new IllegalStateException("System is paused");
+            throw new IntersectionPausedException("System is paused");
         }
 
         // Conflict validation
@@ -47,8 +49,9 @@ public class TrafficServiceImpl implements TrafficService {
         for (Map.Entry<Directions, LightColors> entry : currentState.entrySet()) {
             if (!entry.getKey().equals(direction)
                     && entry.getValue() == LightColors.GREEN) {
-                throw new IllegalStateException("Conflict detected: "
-                        + entry.getKey() + " is already GREEN");
+            	 throw new TrafficConflictException(
+                         "Conflict detected: "  +
+                                 " is already GREEN.");
             }
         }
     }

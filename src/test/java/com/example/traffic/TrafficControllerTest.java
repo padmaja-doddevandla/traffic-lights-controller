@@ -5,16 +5,15 @@ import com.example.traffic.domain.Directions;
 import com.example.traffic.domain.LightChangeRequest;
 import com.example.traffic.domain.LightColors;
 import com.example.traffic.service.TrafficService;
-
 import tools.jackson.databind.ObjectMapper;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
+
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Map;
@@ -24,16 +23,17 @@ import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+
 @WebMvcTest(TrafficController.class)
 class TrafficControllerTest {
 
-    @Autowired
+    @Mock
     private MockMvc mockMvc;
 
     @Mock
     private TrafficService trafficService;
 
-    @Autowired
+    @Mock
     private ObjectMapper objectMapper;
 
     @Test
