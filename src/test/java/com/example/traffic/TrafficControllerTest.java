@@ -2,7 +2,7 @@ package com.example.traffic;
 
 import com.example.traffic.controller.TrafficController;
 import com.example.traffic.domain.Directions;
-import com.example.traffic.domain.LightChangeRequest;
+
 import com.example.traffic.domain.LightColors;
 import com.example.traffic.exception.TrafficConflictException;
 import com.example.traffic.service.TrafficService;

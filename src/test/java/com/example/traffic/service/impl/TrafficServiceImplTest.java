@@ -1,6 +1,5 @@
 package com.example.traffic.service.impl;
 
-import com.example.traffic.controller.TrafficController;
 import com.example.traffic.domain.Directions;
 import com.example.traffic.domain.HistoryEntry;
 import com.example.traffic.domain.LightColors;
