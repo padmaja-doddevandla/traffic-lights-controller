@@ -28,6 +28,7 @@ public class LightChangeRequest {
 	public void setColor(LightColors color) {
 		this.color = color;
 	}
-    
+
+	
     
 }
