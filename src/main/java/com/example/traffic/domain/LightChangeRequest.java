@@ -8,24 +8,24 @@ import lombok.Data;
 public class LightChangeRequest {
 
     @NotNull
-    private Direction direction;
+    private Directions direction;
 
     @NotNull
-    private LightColor color;
+    private LightColors color;
 
-	public Direction getDirection() {
+	public Directions getDirection() {
 		return direction;
 	}
 
-	public void setDirection(Direction direction) {
+	public void setDirection(Directions direction) {
 		this.direction = direction;
 	}
 
-	public LightColor getColor() {
+	public LightColors getColor() {
 		return color;
 	}
 
-	public void setColor(LightColor color) {
+	public void setColor(LightColors color) {
 		this.color = color;
 	}
     

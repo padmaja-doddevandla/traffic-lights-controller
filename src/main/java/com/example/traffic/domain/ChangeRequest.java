@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 class ChangeRequest {
-    private Direction direction;
-    private LightColor color;
+    private Directions direction;
+    private LightColors color;
 }
